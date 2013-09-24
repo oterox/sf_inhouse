@@ -91,8 +91,7 @@
             <p><i class="icon icon-map-marker"></i> Place, Country</p>
           </div>
           <div class="modal-footer" style="text-align: left">
-            <div class="progress" style="background: #ddd">
-              <div class="bar bar-info" style="width: 80%;"></div>
+            <div class="progress" style="background: 80%;"></div>
             </div>
             <div class="row-fluid">
               <div class="span4"><b>80%</b><br/><small>FUNDED</small></div>
