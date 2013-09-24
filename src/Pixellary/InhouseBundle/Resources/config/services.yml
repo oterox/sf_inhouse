@@ -1,0 +1,7 @@
+parameters:
+#    pixellary_inhouse.example.class: Pixellary\InhouseBundle\Example
+
+services:
+#    pixellary_inhouse.example:
+#        class: %pixellary_inhouse.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

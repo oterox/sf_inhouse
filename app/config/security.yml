@@ -1,0 +1,30 @@
+     
+security:
+    firewalls:
+        login_firewall:
+            pattern:    ^/login$
+            anonymous:  ~
+        secured_area:
+            pattern:    ^/
+            logout:
+                path:   /logout
+                target: /
+            form_login: ~
+                
+    providers:
+        in_memory:
+            memory:
+                users:
+                    admin: { password: oterox23, roles: 'ROLE_ADMIN' }
+                    oterox:  { password: oterox23, roles: 'ROLE_ADMIN' }
+                    kendra:  { password: kendra23, roles: 'ROLE_USER' }
+                    client1:  { password: client23, roles: 'ROLE_CLIENT' }
+                    client2:  { password: client23, roles: 'ROLE_CLIENT' }
+                    
+
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_FULLY }

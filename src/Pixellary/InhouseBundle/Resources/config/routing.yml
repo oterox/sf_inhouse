@@ -1,0 +1,11 @@
+pixellary_inhouse:
+    pattern:  /
+    defaults: { _controller: PixellaryInhouseBundle:Default:index }
+
+pixellary_inhouse_board:
+    pattern:  /board
+    defaults: { _controller: PixellaryInhouseBundle:Default:board }
+
+pixellary_inhouse_about:
+    pattern:  /about
+    defaults: { _controller: PixellaryInhouseBundle:Default:about }

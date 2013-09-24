@@ -1,0 +1,61 @@
+{% extends 'PixellaryInhouseBundle::base.html.twig' %}
+
+{% block body %}
+
+    {% block mainmenu %}
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="#">Project name</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="projects">Projects</a></li>
+                            <li><a href="{{ path('pixellary_inhouse_board') }}">Board</a></li>
+                            <li><a href="schedule.php">Schedule</a></li>
+                            <li><a href="reporting.php">Reporting</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Las plantillas <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Las plantillas1</a></li>
+                                    <li><a href="#">Las plantillas2</a></li>
+                                    <li><a href="#">Las plantillas3</a></li>
+                                    <li><a href="#">Las plantillas4</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{{ path('pixellary_inhouse_about') }}">about</a></li>
+                            <li><a href="{{ path('pixellary_inhouse_about') }}"><i class="icon-cog"></i></a></li>
+                            <li><a href="#">{{ app.user.username }}</a></li>
+                            <li><a href="{{ path('logout') }}">Logout</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+
+    <div class="container">
+
+        {% block container %}{% endblock%}
+
+    </div> <!-- /container -->
+
+    {% block footer %}
+        <hr/>
+        <footer>
+            <div class="container">
+                <p>copyright 2013</p>
+            </div>
+        </footer>
+    {% endblock %}
+
+{% endblock %}
+

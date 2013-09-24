@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    {% block title %}
+        <title>pxweb</title>
+    {% endblock %}
+
+    {% block meta%}
+
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% endblock %}
+
+    {% block styles %}
+
+    <!-- CSS
+    ================================================== -->
+    <link href="{{ asset('bundles/pxweb/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/pxweb/css/styles.css') }}" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Favicons
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <!-- Scripts
+    ================================================== -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    {% endblock %}
+</head>
+
+<body>
+{% block body %}{% endblock %}
+
+{% block javascripts %}
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="{{ asset('bundles/pxweb/js/bootstrap-transition.js') }}"></script>
+    <script src="{{ asset('bundles/pxweb/js/bootstrap-alert.js') }}"></script>
+    <script src="{{ asset('bundles/pxweb/js/bootstrap-modal.js') }}"></script>
+    <script src="{{ asset('bundles/pxweb/js/bootstrap-dropdown.js') }}"></script>
+    <script src="{{ asset('bundles/pxweb/js/bootstrap-tab.js') }}"></script>
+    <script src="{{ asset('bundles/pxweb/js/bootstrap-tooltip.js') }}"></script>
+    <script src="{{ asset('bundles/pxweb/js/bootstrap-popover.js') }}"></script>
+    <script src="{{ asset('bundles/pxweb/js/bootstrap-button.js') }}"></script>
+    <script src="{{ asset('bundles/pxweb/js/bootstrap-collapse.js') }}"></script>
+
+	<script src="{{ asset('bundles/pxweb/js/inhouse.js') }}"></script>
+	
+{% endblock %}
+</body>
+
+</html>
