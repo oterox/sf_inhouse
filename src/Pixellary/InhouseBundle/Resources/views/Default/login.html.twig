@@ -3,7 +3,7 @@
 {% block body %}
 
    <div class="container">
-
+	
 		{% if error %}
 		    <div>{{ error.message }}</div>
 		{% endif %}
@@ -11,7 +11,7 @@
 		<form class="form-horizontal" action='{{ path('login_check') }}' method="POST">
 		  <fieldset>
 		    <div id="legend">
-		      <legend class="">Inhouse Login</legend>
+		      <legend class="">Login</legend>
 		    </div>
 		    <div class="control-group">
 		      <!-- Username -->
