@@ -14,3 +14,11 @@ pixellary_inhouse_schedule:
     pattern:  /schedule
     defaults: { _controller: PixellaryInhouseBundle:Default:schedule }
 
+pixellary_inhouse_projects:
+    pattern:  /projects
+    defaults: { _controller: PixellaryInhouseBundle:Default:projects }
+
+pixellary_inhouse_reporting:
+    pattern:  /reporting
+    defaults: { _controller: PixellaryInhouseBundle:Default:reporting }
+

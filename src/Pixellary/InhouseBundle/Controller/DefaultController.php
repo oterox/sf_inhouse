@@ -23,10 +23,22 @@ class DefaultController extends Controller
         return $this->render('PixellaryInhouseBundle:Default:board.html.twig');
     }
 
+    public function reportingAction()
+    {
+        return $this->render('PixellaryInhouseBundle:Default:reporting.html.twig');
+    }
+
+    public function projecstAction()
+    {
+        return $this->render('PixellaryInhouseBundle:Default:projects.html.twig');
+    }
+
     public function scheduleAction()
     {
         return $this->render('PixellaryInhouseBundle:Default:schedule.html.twig');
     }
+
+
 
     public function loginAction()
     {

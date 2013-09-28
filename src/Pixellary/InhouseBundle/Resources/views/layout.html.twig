@@ -12,14 +12,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="brand" href="#">Project name</a>
+                    <a class="brand" href="#">InHouse</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="projects">Projects</a></li>
-                            <li><a href="{{ path('pixellary_inhouse_board') }}">Board</a></li>
+                            <li><a href="{{ path('pixellary_inhouse_projects') }}">Projects</a></li>
+                            <li class="active"><a href="{{ path('pixellary_inhouse_board') }}">Board</a></li>
                             <li><a href="{{ path('pixellary_inhouse_schedule') }}">Schedule</a></li>
-                            <li><a href="reporting.php">Reporting</a></li>
+                            <li><a href="{{ path('pixellary_inhouse_reporting') }}">Reporting</a></li>
+                            <li><a href="{{ path('pixellary_inhouse_about') }}">about</a></li>
                             
                             {% if is_granted('ROLE_ADMIN') %}    
 
@@ -27,7 +27,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin menu <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Option1</a></li>
-                                    <li><a href="#">Option2</a></li>
+                                    <li><a href="{{ path('pixellary_inhouse_board') }}">Board</a></li>
                                     <li><a href="#">Option3</a></li>
                                     <li><a href="#">Option4</a></li>
                                 </ul>
@@ -35,10 +35,10 @@
                             
                             {% endif %}
                             
-                            <li><a href="{{ path('pixellary_inhouse_about') }}">about</a></li>
-                            <li><a href="{{ path('pixellary_inhouse_about') }}"><i class="icon-cog"></i></a></li>
                             <li><a href="#">{{ app.user.username }}</a></li>
                             <li><a href="{{ path('logout') }}">Logout</a></li>
+                            <li><a href="{{ path('pixellary_inhouse_about') }}"><i class="icon-cog"></i></a></li>
+
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
