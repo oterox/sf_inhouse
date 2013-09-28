@@ -16,7 +16,7 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li><a href="{{ path('pixellary_inhouse_projects') }}">Projects</a></li>
-                            <li class="active"><a href="{{ path('pixellary_inhouse_board') }}">Board</a></li>
+                            <li><a href="{{ path('pixellary_inhouse_board') }}">Board</a></li>
                             <li><a href="{{ path('pixellary_inhouse_schedule') }}">Schedule</a></li>
                             <li><a href="{{ path('pixellary_inhouse_reporting') }}">Reporting</a></li>
                             <li><a href="{{ path('pixellary_inhouse_about') }}">about</a></li>
@@ -35,7 +35,7 @@
                             
                             {% endif %}
                             
-                            <li><a href="#">{{ app.user.username }}</a></li>
+                            <li class="active"><a href="#">{{ app.user.username }}</a></li>
                             <li><a href="{{ path('logout') }}">Logout</a></li>
                             <li><a href="{{ path('pixellary_inhouse_about') }}"><i class="icon-cog"></i></a></li>
 
