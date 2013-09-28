@@ -28,7 +28,7 @@ class DefaultController extends Controller
         return $this->render('PixellaryInhouseBundle:Default:reporting.html.twig');
     }
 
-    public function projecstAction()
+    public function projectsAction()
     {
         return $this->render('PixellaryInhouseBundle:Default:projects.html.twig');
     }
