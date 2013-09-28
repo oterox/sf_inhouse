@@ -1,7 +1,7 @@
 <?php
 
 namespace Pixellary\InhouseBundle\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,7 +26,6 @@ class Task
      *
      * @ORM\Column(name="title", type="string", length=255)
      * @Assert\NotNull()
-     * @Assert\MinLength(4)
      */
     private $title;
 

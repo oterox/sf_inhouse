@@ -2,6 +2,7 @@
 
 namespace Pixellary\InhouseBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
