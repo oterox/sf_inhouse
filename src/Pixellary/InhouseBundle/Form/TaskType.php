@@ -12,9 +12,31 @@ class TaskType extends AbstractType
 
         $builder->add('title')
                 ->add('details', 'textarea')
-                ->add('assignee')
-                ->add('status')
-                ->add('priority')
+                ->add('assignee', 'choice', array(
+                    'choices' => array(
+                        '1' => 'Javier Otero',
+                        '2' => 'Kendra Schaefer',
+                    ),
+                    'multiple'  => false,
+                ))
+                ->add('status', 'choice', array(
+                    'choices' => array(
+                        '1' => 'Not started',
+                        '2' => 'In progress',
+                        '3' => 'Finished',
+                        '4' => 'Paused',
+                        '5' => 'Cancelled',
+                    ),
+                    'multiple'  => false,
+                ))
+                ->add('priority', 'choice', array(
+                    'choices' => array(
+                        '1' => 'Low',
+                        '2' => 'Normal',
+                        '3' => 'High',
+                    ),
+                    'multiple'  => false,
+                ))
                 ->add('project_id')
                 ->add('created', 'date')
                 //->add('taskProgress', 'percent', array('type' => 'integer' ))
