@@ -1,0 +1,23 @@
+{% extends 'PixellaryInhouseBundle::layout.html.twig' %}
+
+{% block container %}
+
+    <div class="row">
+
+       <div class="span12">
+
+           {% block article %}
+
+               <form action="{{ path('taskForm') }}" method="post" {{
+               form_enctype(form) }}>
+                   {{ form_widget(form) }}
+                   <input type="submit" value="Save Task" />
+               </form>
+
+           {% endblock %}
+
+        </div>
+
+    </div>
+
+{% endblock %}

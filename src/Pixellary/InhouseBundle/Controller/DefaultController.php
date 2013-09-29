@@ -5,6 +5,11 @@ namespace Pixellary\InhouseBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Pixellary\InhouseBundle\Entity\Task;
+use Pixellary\InhouseBundle\Form\TaskType;
+
 class DefaultController extends Controller
 {
     public function indexAction()
@@ -37,6 +42,54 @@ class DefaultController extends Controller
     {
         return $this->render('PixellaryInhouseBundle:Default:schedule.html.twig');
     }
+
+
+
+
+    public function taskListAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $tasks = $em->getRepository('PixellaryInhouseBundle:Task')->findBy(array(), array('id' => 'DESC'));
+
+        return $this->render('PixellaryInhouseBundle:Default:taskList.html.twig', array( 'tasks'=> $tasks ));
+    }
+
+    public function taskFormAction()
+    {
+        $request = $this->getRequest();
+
+        $task = new Task();
+        
+
+        $form = $this->createForm(new TaskType(), $task);
+
+        if ($request->getMethod() == 'POST') {
+
+            $form->bind($request);
+            if ($form->isValid()) {
+
+                $em = $this->getDoctrine()->getManager();
+
+                $em->persist($task);
+
+                $tasks = $em->getRepository('PixellaryInhouseBundle:Task')->findAll();
+
+                $em->flush();
+
+                $this->get('session')->getFlashBag()->add('notice', 'SUCCESS!');
+
+                return $this->redirect($this->generateUrl('taskList'));
+
+            }
+
+        }
+
+        return $this->render('PixellaryInhouseBundle:Default:taskForm.html.twig',array('form' => $form->createView()) );
+    }
+
+
+
 
 
 
