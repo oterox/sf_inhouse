@@ -22,10 +22,10 @@ pixellary_inhouse_reporting:
     pattern:  /reporting
     defaults: { _controller: PixellaryInhouseBundle:Default:reporting }
 
-taskList:
-    pattern:  /tasklist
+pixellary_inhouse_taskList:
+    pattern:  /taskList
     defaults: { _controller: PixellaryInhouseBundle:Default:taskList }
 
-taskForm:
-    pattern:  /taskform
+pixellary_inhouse_taskForm:
+    pattern:  /taskForm
     defaults: { _controller: PixellaryInhouseBundle:Default:taskForm }

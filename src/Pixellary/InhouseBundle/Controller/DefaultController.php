@@ -79,7 +79,7 @@ class DefaultController extends Controller
 
                 $this->get('session')->getFlashBag()->add('notice', 'SUCCESS!');
 
-                return $this->redirect($this->generateUrl('taskList'));
+                return $this->redirect($this->generateUrl('pixellary_inhouse_taskList'));
 
             }
 

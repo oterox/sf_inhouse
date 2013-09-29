@@ -10,7 +10,7 @@
 
            {% block article %}
 
-               <form action="{{ path('taskForm') }}" method="post" {{
+               <form action="{{ path('pixellary_inhouse_taskForm') }}" method="post" {{
                form_enctype(form) }}>
                    {{ form_widget(form) }}
                    <input type="submit" class="btn" value="Save Task" />
