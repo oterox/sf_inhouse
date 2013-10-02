@@ -1,109 +1,100 @@
 <?php
 
 namespace Pixellary\InhouseBundle\Entity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Project
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Pixellary\InhouseBundle\Entity\ProjectRepository")
+ * @ORM\Table(name="Project")
+ * @ORM\Entity
  */
 class Project
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
-     * @Assert\NotNull()
+     * @ORM\Column(name="title", type="string", length=255, nullable=false)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="details", type="text")
-     * @Assert\NotNull()
+     * @ORM\Column(name="details", type="text", nullable=false)
      */
     private $details;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="total", type="float")
+     * @ORM\Column(name="total", type="float", nullable=false)
      */
     private $total;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="paid", type="float")
+     * @ORM\Column(name="paid", type="float", nullable=false)
      */
     private $paid;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=50)
+     * @ORM\Column(name="status", type="string", length=50, nullable=false)
      */
     private $status;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="stage", type="string", length=50)
+     * @ORM\Column(name="stage", type="string", length=50, nullable=false)
      */
     private $stage;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="client_id", type="integer")
-     */
-    private $clientId;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="url", type="string", length=255, nullable=false)
      */
     private $url;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="thumb", type="string", length=255)
+     * @ORM\Column(name="thumb", type="string", length=255, nullable=false)
      */
     private $thumb;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="category_id", type="integer")
+     * @ORM\Column(name="category_id", type="integer", nullable=false)
      */
     private $categoryId;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
 
     /**
-     * Get id
+     * @var \Pixellary\InhouseBundle\Entity\Client
      *
-     * @return integer 
+     * @ORM\ManyToOne(targetEntity="Pixellary\InhouseBundle\Entity\Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     * })
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $client;
+
+
 
     /**
      * Set title
@@ -244,29 +235,6 @@ class Project
     }
 
     /**
-     * Set clientId
-     *
-     * @param integer $clientId
-     * @return Project
-     */
-    public function setClientId($clientId)
-    {
-        $this->clientId = $clientId;
-    
-        return $this;
-    }
-
-    /**
-     * Get clientId
-     *
-     * @return integer 
-     */
-    public function getClientId()
-    {
-        return $this->clientId;
-    }
-
-    /**
      * Set url
      *
      * @param string $url
@@ -334,4 +302,42 @@ class Project
     {
         return $this->categoryId;
     }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set client
+     *
+     * @param \Pixellary\InhouseBundle\Entity\Client $client
+     * @return Project
+     */
+    public function setClient(\Pixellary\InhouseBundle\Entity\Client $client = null)
+    {
+        $this->client = $client;
+    
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \Pixellary\InhouseBundle\Entity\Client 
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    function __toString(){
+        return $this->title;
+    }
+
 }

@@ -37,7 +37,7 @@ class TaskType extends AbstractType
                     ),
                     'multiple'  => false,
                 ))
-                ->add('project_id')
+                ->add('project', 'entity', array('class'=>'Pixellary\InhouseBundle\Entity\Project', 'property'=>'title', ))
                 ->add('created', 'date')
                 //->add('taskProgress', 'percent', array('type' => 'integer' ))
         ;

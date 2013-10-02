@@ -52,6 +52,8 @@ class DefaultController extends Controller
 
         $tasks = $em->getRepository('PixellaryInhouseBundle:Task')->findBy(array(), array('id' => 'DESC'));
 
+        //$taskProject = $tasks->getProject()->getTitle();
+
         return $this->render('PixellaryInhouseBundle:Default:taskList.html.twig', array( 'tasks'=> $tasks ));
     }
 
@@ -61,6 +63,7 @@ class DefaultController extends Controller
 
         $task = new Task();
         
+        $task->setCreated(new \DateTime());
 
         $form = $this->createForm(new TaskType(), $task);
 

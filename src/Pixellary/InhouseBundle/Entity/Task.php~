@@ -1,0 +1,77 @@
+<?php
+
+namespace Pixellary\InhouseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Task
+ *
+ * @ORM\Table(name="Task")
+ * @ORM\Entity
+ */
+class Task
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=false)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="details", type="text", nullable=false)
+     */
+    private $details;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="date", nullable=false)
+     */
+    private $created;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=50, nullable=false)
+     */
+    private $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="assignee", type="string", length=50, nullable=false)
+     */
+    private $assignee;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="priority", type="string", length=50, nullable=false)
+     */
+    private $priority;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Pixellary\InhouseBundle\Entity\Project
+     *
+     * @ORM\ManyToOne(targetEntity="Pixellary\InhouseBundle\Entity\Project")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     * })
+     */
+    private $project;
+
+
+}

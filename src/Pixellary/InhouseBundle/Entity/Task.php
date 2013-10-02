@@ -1,87 +1,79 @@
 <?php
 
 namespace Pixellary\InhouseBundle\Entity;
-use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Task
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Pixellary\InhouseBundle\Entity\TaskRepository")
+ * @ORM\Table(name="Task")
+ * @ORM\Entity
  */
 class Task
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
-     * @Assert\NotNull()
+     * @ORM\Column(name="title", type="string", length=255, nullable=false)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="details", type="text")
-     * @Assert\NotNull()
+     * @ORM\Column(name="details", type="text", nullable=false)
      */
     private $details;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created", type="date")
+     * @ORM\Column(name="created", type="date", nullable=false)
      */
     private $created;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=50)
+     * @ORM\Column(name="status", type="string", length=50, nullable=false)
      */
     private $status;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="assignee", type="string", length=50)
+     * @ORM\Column(name="assignee", type="string", length=50, nullable=false)
      */
     private $assignee;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="priority", type="string", length=50)
+     * @ORM\Column(name="priority", type="string", length=50, nullable=false)
      */
     private $priority;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="project_id", type="integer")
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $projectId;
-
+    private $id;
 
     /**
-     * Get id
+     * @var \Pixellary\InhouseBundle\Entity\Project
      *
-     * @return integer 
+     * @ORM\ManyToOne(targetEntity="Pixellary\InhouseBundle\Entity\Project")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     * })
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $project;
+
+
 
     /**
      * Set title
@@ -222,25 +214,35 @@ class Task
     }
 
     /**
-     * Set projectId
+     * Get id
      *
-     * @param integer $projectId
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set project
+     *
+     * @param \Pixellary\InhouseBundle\Entity\Project $project
      * @return Task
      */
-    public function setProjectId($projectId)
+    public function setProject(\Pixellary\InhouseBundle\Entity\Project $project = null)
     {
-        $this->projectId = $projectId;
+        $this->project = $project;
     
         return $this;
     }
 
     /**
-     * Get projectId
+     * Get project
      *
-     * @return integer 
+     * @return \Pixellary\InhouseBundle\Entity\Project 
      */
-    public function getProjectId()
+    public function getProject()
     {
-        return $this->projectId;
+        return $this->project;
     }
 }
