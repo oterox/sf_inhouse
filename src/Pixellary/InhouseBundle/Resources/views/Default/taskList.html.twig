@@ -19,6 +19,7 @@
                     <th>Status</th>
                     <th>Assignee</th>
                     <th>Created</th>
+		    <th>Project</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,6 +31,7 @@
                     <td>{{ task.status }}</td>
                     <td>{{ task.assignee }}</td>
                     <td>{{ task.created |date('d-m-Y') }}</td>
+		    <td>{{ task.project.title }}</td>
 
                 </tr>
                 {% endfor %}
