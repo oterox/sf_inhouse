@@ -1,4 +1,5 @@
 /web/bundles/
+!/web/bundles/pxweb/
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
@@ -7,6 +8,5 @@
 !app/logs/.gitkeep
 /build/
 /vendor/
-!/vendor/pxweb/
 /bin/
 /composer.phar
