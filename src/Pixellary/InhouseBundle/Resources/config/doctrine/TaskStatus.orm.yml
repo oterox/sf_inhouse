@@ -1,0 +1,13 @@
+Pixellary\InhouseBundle\Entity\TaskStatus:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        title:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
