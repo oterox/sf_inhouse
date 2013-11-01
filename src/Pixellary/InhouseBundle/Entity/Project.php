@@ -62,9 +62,10 @@ class Project
     private $url;
 
     /**
-     * @var string
+     * @var file
      *
-     * @ORM\Column(name="thumb", type="string", length=255, nullable=false)
+     * @ORM\Column(name="thumb", type="file", nullable=true)
+     *    
      */
     private $thumb;
 
