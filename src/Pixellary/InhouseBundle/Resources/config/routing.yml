@@ -14,9 +14,9 @@ pixellary_inhouse_schedule:
     pattern:  /schedule
     defaults: { _controller: PixellaryInhouseBundle:Default:schedule }
 
-pixellary_inhouse_projects:
-    pattern:  /projects
-    defaults: { _controller: PixellaryInhouseBundle:Default:projects }
+pixellary_inhouse_projectsExtended:
+    pattern:  /projectsExtended
+    defaults: { _controller: PixellaryInhouseBundle:Default:projectsExtended }
 
 pixellary_inhouse_reporting:
     pattern:  /reporting
@@ -29,3 +29,19 @@ pixellary_inhouse_taskList:
 pixellary_inhouse_taskForm:
     pattern:  /taskForm
     defaults: { _controller: PixellaryInhouseBundle:Default:taskForm }
+
+pixellary_inhouse_clientList:
+    pattern:  /clientList
+    defaults: { _controller: PixellaryInhouseBundle:Default:clientList }
+
+pixellary_inhouse_clientForm:
+    pattern:  /clientForm
+    defaults: { _controller: PixellaryInhouseBundle:Default:clientForm }
+
+pixellary_inhouse_projectList:
+    pattern:  /projectList
+    defaults: { _controller: PixellaryInhouseBundle:Default:projectList }
+
+pixellary_inhouse_projectForm:
+    pattern:  /projectForm
+    defaults: { _controller: PixellaryInhouseBundle:Default:projectForm }

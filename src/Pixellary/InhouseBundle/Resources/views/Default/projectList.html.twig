@@ -1,0 +1,57 @@
+{% extends 'PixellaryInhouseBundle::layout.html.twig' %}
+
+{% block container %}
+
+
+    <div class="row">
+
+        <div class="span12">
+            <h2>Project List</h2>
+        
+        </div>
+        <div class="span12">
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Project #</th>
+                    <th>Title</th>
+                    <th>Total</th>
+                    <th>Paid</th>
+                    <th>Client</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for project in projects %}
+                <tr>
+                    <td>{{ project.id }}</td>
+                    <td>{{ project.title }}</td>
+                    <td>{{ project.total }}</td>
+                    <td>{{ project.paid }}</td>
+		            <td>{{ project.client.title }}</td>
+                </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            <p>TODO:</p>
+            <div class="pagination pagination-centered">
+                <ul>
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">»</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+
+    </div>
+
+{% endblock %}

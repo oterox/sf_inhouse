@@ -7,8 +7,12 @@ use Symfony\Component\Security\Core\SecurityContext;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Pixellary\InhouseBundle\Entity\Client;
+use Pixellary\InhouseBundle\Form\ClientType;
 use Pixellary\InhouseBundle\Entity\Task;
 use Pixellary\InhouseBundle\Form\TaskType;
+use Pixellary\InhouseBundle\Entity\Project;
+use Pixellary\InhouseBundle\Form\ProjectType;
 
 class DefaultController extends Controller
 {
@@ -33,7 +37,7 @@ class DefaultController extends Controller
         return $this->render('PixellaryInhouseBundle:Default:reporting.html.twig');
     }
 
-    public function projectsAction()
+    public function projectsExtendedAction()
     {
         return $this->render('PixellaryInhouseBundle:Default:projects.html.twig');
     }
@@ -89,6 +93,91 @@ class DefaultController extends Controller
         }
 
         return $this->render('PixellaryInhouseBundle:Default:taskForm.html.twig',array('form' => $form->createView()) );
+    }
+
+    public function clientListAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $clients = $em->getRepository('PixellaryInhouseBundle:Client')->findBy(array(), array('id' => 'DESC'));
+
+        return $this->render('PixellaryInhouseBundle:Default:clientList.html.twig', array( 'clients'=> $clients ));
+    }
+
+    public function clientFormAction()
+    {
+        $request = $this->getRequest();
+
+        $client = new Client();
+
+        $form = $this->createForm(new ClientType(), $client);
+
+        if ($request->getMethod() == 'POST') {
+
+            $form->bind($request);
+
+            if ($form->isValid()) {
+
+                $em = $this->getDoctrine()->getManager();
+
+                $em->persist($client);
+
+                $clients = $em->getRepository('PixellaryInhouseBundle:Client')->findAll();
+
+                $em->flush();
+
+                $this->get('session')->getFlashBag()->add('notice', 'SUCCESS!');
+
+                return $this->redirect($this->generateUrl('pixellary_inhouse_clientList'));
+
+            }
+
+        }
+
+        return $this->render('PixellaryInhouseBundle:Default:clientForm.html.twig',array('form' => $form->createView()) );
+    }
+
+
+    public function projectListAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $projects = $em->getRepository('PixellaryInhouseBundle:Project')->findBy(array(), array('id' => 'DESC'));
+
+        return $this->render('PixellaryInhouseBundle:Default:projectList.html.twig', array( 'projects'=> $projects ));
+    }
+
+    public function projectFormAction()
+    {
+        $request = $this->getRequest();
+
+        $project = new Project();
+
+        $form = $this->createForm(new ProjectType(), $project);
+
+        if ($request->getMethod() == 'POST') {
+
+            $form->bind($request);
+
+            if ($form->isValid()) {
+
+                $em = $this->getDoctrine()->getManager();
+
+                $em->persist($project);
+
+                $projects = $em->getRepository('PixellaryInhouseBundle:Project')->findAll();
+
+                $em->flush();
+
+                $this->get('session')->getFlashBag()->add('notice', 'SUCCESS!');
+
+                return $this->redirect($this->generateUrl('pixellary_inhouse_projectList'));
+
+            }
+
+        }
+
+        return $this->render('PixellaryInhouseBundle:Default:projectForm.html.twig',array('form' => $form->createView()) );
     }
 
 

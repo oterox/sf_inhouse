@@ -1,0 +1,25 @@
+{% extends 'PixellaryInhouseBundle::layout.html.twig' %}
+
+{% block container %}
+
+    <div class="row">
+        <div class="span12">
+            <h2>Create client</h2>
+        </div>
+       <div class="span12">
+
+           {% block article %}
+
+               <form action="{{ path('pixellary_inhouse_clientForm') }}" method="post" {{
+               form_enctype(form) }}>
+                   {{ form_widget(form) }}
+                   <input type="submit" class="btn" value="Save Client" />
+               </form>
+
+           {% endblock %}
+
+        </div>
+
+    </div>
+
+{% endblock %}
