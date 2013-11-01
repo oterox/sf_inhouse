@@ -162,7 +162,9 @@ class DefaultController extends Controller
             if ($form->isValid()) {
 
                 $em = $this->getDoctrine()->getManager();
-
+                
+                $project->upload();
+                
                 $em->persist($project);
 
                 $projects = $em->getRepository('PixellaryInhouseBundle:Project')->findAll();

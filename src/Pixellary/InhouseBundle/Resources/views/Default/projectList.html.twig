@@ -19,6 +19,7 @@
                     <th>Total</th>
                     <th>Paid</th>
                     <th>Client</th>
+                    <th>Thumb</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,7 +30,8 @@
                     <td>{{ project.title }}</td>
                     <td>{{ project.total }}</td>
                     <td>{{ project.paid }}</td>
-		            <td>{{ project.client.title }}</td>
+                    <td>{{ project.client.title }}</td>
+		            <td>{{ project.getWebPath }}</td>
                 </tr>
                 {% endfor %}
 

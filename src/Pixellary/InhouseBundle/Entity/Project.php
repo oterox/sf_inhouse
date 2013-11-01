@@ -3,6 +3,8 @@
 namespace Pixellary\InhouseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Project
@@ -68,6 +70,11 @@ class Project
      *    
      */
     private $thumb;
+
+    /**
+     * @Assert\Image(maxSize="6000000")
+     */
+    private $file;
 
     /**
      * @var integer
@@ -339,6 +346,63 @@ class Project
 
     function __toString(){
         return $this->title;
+    }
+
+
+    /**
+     * Virtual getter that returns logo web path
+     * @return string 
+     */
+    public function getThumbSrc() {
+      //return $this->getWebPath();
+      return $this->getUploadRootDir();
+    }
+
+
+
+    /* Handling uploads */
+    /**
+     * @return string 
+     */
+    private function getUploadDir() {
+      return 'uploads/images';
+    }
+
+    public function getFile() {
+      return $this->file;
+    }
+
+    public function setFile($file) {
+      $this->file = $file;
+    }
+
+    public function getAbsolutePath() {
+      return null === $this->thumb ? null : $this->getUploadRootDir() . '/' . $this->thumb;
+    }
+
+    public function getWebPath() {
+      return null === $this->thumb ? null : $this->getUploadDir() . $this->thumb;
+    }
+
+    private function getUploadRootDir() {
+    // the absolute directory path where uploaded documents should be saved
+      return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+    }
+
+    public function upload() {
+      // the file property can be empty if the field is not required
+      if (null === $this->file) {
+        return;
+      }
+
+      $hashName = sha1($this->file->getClientOriginalName() . $this->getId() . mt_rand(0, 99999));
+
+      //$this->thumb = $this->file->getClientOriginalName();
+      $this->thumb = $hashName . '.' . $this->file->guessExtension();
+
+      $this->file->move($this->getUploadRootDir(), $this->getThumb());
+
+      unset($this->file);
     }
 
 }
