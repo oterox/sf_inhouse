@@ -361,37 +361,30 @@ class Project
 
     /* Handling uploads */
 
-    public function getAbsolutePath($usuario = null) {
-        return null === $this->thumb ? null : $this->getUploadRootDir($usuario) . '/' . $this->thumb;
+    public function getAbsolutePath() {
+        return null === $this->thumb ? null : $this->getUploadRootDir() . '/' . $this->thumb;
     }
 
-    public function getWebPath($usuario = null) {
-        return null === $this->thumb ? null : $this->getUploadDir($usuario) . '/' . $this->thumb;
+    public function getWebPath() {
+        return null === $this->thumb ? null : $this->getUploadDir() . '/' . $this->thumb;
     }
 
     protected function getUploadRootDir($usuario = null) {
         // the absolute directory path where uploaded documents should be saved
-        return __DIR__ . '/../../../../web/' . $this->getUploadDir($usuario);
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
     }
 
-    protected function getUploadDir($usuario = null) {
-        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-        if ($usuario)
-            return 'uploads/images/' . $usuario;
-        else
-            return 'uploads/images';
+    protected function getUploadDir() {
+        return 'uploads/images/project';
     }
 
-    public function upload($usuario = null) {
-        // the file property can be empty if the field is not required
+    public function upload() {
+       
         if (null === $this->file) {
             return;
         }
 
-        // we use the original file name here but you should
-        // sanitize it at least to avoid any security issues
-        // move takes the target directory and then the target filename to move to
-        $this->file->move($this->getUploadRootDir($usuario), $this->file->getClientOriginalName());
+        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
 
         // set the path property to the filename where you'ved saved the file
         $this->thumb = $this->file->getClientOriginalName();

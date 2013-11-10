@@ -151,8 +151,6 @@ class DefaultController extends Controller
     {
         $request = $this->getRequest();
         
-        $user = $this->get('security.context')->getToken()->getUser();
-        
         $project = new Project();
 
         $form = $this->createForm(new ProjectType(), $project);
@@ -165,7 +163,7 @@ class DefaultController extends Controller
 
                 $em = $this->getDoctrine()->getManager();
                 
-                $project->upload( $user->getUsername() );
+                $project->upload();
                 
                 $em->persist($project);
 
