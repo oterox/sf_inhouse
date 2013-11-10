@@ -1,7 +1,7 @@
 # -- Symfony2 -----------------------------------------
+!/web/bundles/pxweb/
 /web/bundles/
 /web/uploads/
-!/web/bundles/pxweb/
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
