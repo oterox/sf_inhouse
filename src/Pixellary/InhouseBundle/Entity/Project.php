@@ -4,7 +4,6 @@ namespace Pixellary\InhouseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Project
@@ -59,22 +58,22 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255, nullable=false)
+     * @ORM\Column(name="url", type="string", length=255, nullable=true)
      */
     private $url;
 
     /**
-     * @var file
+     * @var string
      *
-     * @ORM\Column(name="thumb", type="file", nullable=true)
+     * @ORM\Column(name="thumb", type="string", length=255, nullable=true)
      *    
      */
     private $thumb;
 
     /**
-     * @Assert\Image(maxSize="6000000")
+     * @Assert\File(maxSize="6000000")
      */
-    private $file;
+    public $file;
 
     /**
      * @var integer
@@ -361,48 +360,44 @@ class Project
 
 
     /* Handling uploads */
-    /**
-     * @return string 
-     */
-    private function getUploadDir() {
-      return 'uploads/images';
+
+    public function getAbsolutePath($usuario = null) {
+        return null === $this->thumb ? null : $this->getUploadRootDir($usuario) . '/' . $this->thumb;
     }
 
-    public function getFile() {
-      return $this->file;
+    public function getWebPath($usuario = null) {
+        return null === $this->thumb ? null : $this->getUploadDir($usuario) . '/' . $this->thumb;
     }
 
-    public function setFile($file) {
-      $this->file = $file;
+    protected function getUploadRootDir($usuario = null) {
+        // the absolute directory path where uploaded documents should be saved
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir($usuario);
     }
 
-    public function getAbsolutePath() {
-      return null === $this->thumb ? null : $this->getUploadRootDir() . '/' . $this->thumb;
+    protected function getUploadDir($usuario = null) {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        if ($usuario)
+            return 'uploads/images/' . $usuario;
+        else
+            return 'uploads/images';
     }
 
-    public function getWebPath() {
-      return null === $this->thumb ? null : $this->getUploadDir() . $this->thumb;
-    }
+    public function upload($usuario = null) {
+        // the file property can be empty if the field is not required
+        if (null === $this->file) {
+            return;
+        }
 
-    private function getUploadRootDir() {
-    // the absolute directory path where uploaded documents should be saved
-      return __DIR__ . '/../../../../web/' . $this->getUploadDir();
-    }
+        // we use the original file name here but you should
+        // sanitize it at least to avoid any security issues
+        // move takes the target directory and then the target filename to move to
+        $this->file->move($this->getUploadRootDir($usuario), $this->file->getClientOriginalName());
 
-    public function upload() {
-      // the file property can be empty if the field is not required
-      if (null === $this->file) {
-        return;
-      }
-
-      $hashName = sha1($this->file->getClientOriginalName() . $this->getId() . mt_rand(0, 99999));
-
-      //$this->thumb = $this->file->getClientOriginalName();
-      $this->thumb = $hashName . '.' . $this->file->guessExtension();
-
-      $this->file->move($this->getUploadRootDir(), $this->getThumb());
-
-      unset($this->file);
+        // set the path property to the filename where you'ved saved the file
+        $this->thumb = $this->file->getClientOriginalName();
+        
+        // clean up the file property as you won't need it anymore
+        $this->file = null;
     }
 
 }

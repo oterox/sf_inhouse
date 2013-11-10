@@ -35,7 +35,7 @@ class ProjectType extends AbstractType
                     'multiple'  => false,
                 ))
                 ->add('url')
-                ->add('thumb','file')
+                ->add('file', 'file')
                 ->add('category_id', 'choice', array(
                     'choices' => array(
                         '1' => 'Wordpress',
