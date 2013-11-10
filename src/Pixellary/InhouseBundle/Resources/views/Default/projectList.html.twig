@@ -31,7 +31,13 @@
                     <td>{{ project.total }}</td>
                     <td>{{ project.paid }}</td>
                     <td>{{ project.client.title }}</td>
-		            <td>{{ project.thumb }}</td>
+		            <td>
+                    {% if project.thumb %}
+                        <img src="/{{ project.getWebPath(app.user.username) }}" width="30" height="30" />
+                    {% else %}
+                        No image
+                    {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
 
