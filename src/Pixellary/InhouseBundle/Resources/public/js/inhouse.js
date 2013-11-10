@@ -1,0 +1,9 @@
+/**
+ * @author oterox
+ */
+(function($) {
+
+	
+					
+})(jQuery);
+			
